@@ -11,28 +11,28 @@ If any file doesn't lint properly your unit test run will fail.
 
 1. Add "linttest" to your INSTALLED_APPS setting like this::
 
-```
-    INSTALLED_APPS = [
-        ...
+    ```
+        INSTALLED_APPS = [
+            ...
         'linttest',
-    ]
-```
+        ]
+    ```
 
 2. Specify the commit origin in your settings (sh> git log)::
 
-```
-    LINT_TEST_SINCE_COMMIT = '<commit hash>'
-```
+    ```
+        LINT_TEST_SINCE_COMMIT = '<commit hash>'
+    ```
 
 3. Run the management command::
 
-```
-    python manage.py linttest
+    ```
+        python manage.py linttest
 
-    or
+        or
 
-    python manage.py test linttest
-```
+        python manage.py test linttest
+    ```
 
 4. Fix any files that fail the linting!
 
@@ -44,19 +44,19 @@ If any file doesn't lint properly your unit test run will fail.
 
 2. Add a test that extends the `LintTestCase` to another test file in your project
 
-```
-    from linttest.tests import LintTestCase
+    ```
+        from linttest.tests import LintTestCase
 
 
-    class MyLintTests(LintTestCase):
-        pass
-```
+        class MyLintTests(LintTestCase):
+            pass
+    ```
 
 3. Run the test command::
 
-```
-    python manage.py test
-```
+    ```
+        python manage.py test
+    ```
 
 This is required for django 1.6 and up because the DiscoveryRunner defaults to just running
 tests in your project.
@@ -68,18 +68,20 @@ For local installation
 
 2. Package it
 
-```
-    python setup.py sdist  # rerun this and the next step on change
-```
+    ```
+        python setup.py sdist  # rerun this and the next step on change
+    ```
 
 3. From your desired install project - note the relative path - update for your project location
 
-```
-    pip install ../linttest/dist/linttest-0.1.tar.gz
+    ```
+        pip install ../linttest/dist/linttest-0.1.tar.gz
+    ```
 
     or
 
-    pip install ../linttest/dist/linttest-0.1.tar.gz --upgrade  # rerun on change
-```
+    ```
+        pip install ../linttest/dist/linttest-0.1.tar.gz --upgrade  # rerun on change
+    ```
 
 4. You can follow the quickstart from there
