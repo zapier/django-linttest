@@ -9,6 +9,8 @@ If any file doesn't lint properly your unit test run will fail.
 ## Quick start
 -----------
 
+1. `pip install linttest`
+
 1. Add "linttest" to your INSTALLED_APPS setting like this::
 
     ```

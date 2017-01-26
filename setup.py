@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='linttest',
-    version='0.1',
+    version='0.1.1',
     packages=find_packages(),
     install_requires=['gitpython==2.1.1', 'flake8==3.2.1', 'pep8==1.7.0', 'pyflakes==1.3.0'],
     include_package_data=True,
