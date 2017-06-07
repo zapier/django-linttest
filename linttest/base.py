@@ -1,7 +1,6 @@
 """
 
 """
-
 import unittest
 from git import Repo
 from pep8 import StandardReport
@@ -49,12 +48,18 @@ class LintBuildTestCase(type):
     def __new__(cls, name, bases, attrs):
         excludes = attrs.get('excludes', [])
         project_dir = attrs.get('project_dir', './')
-        since_commit = attrs.get('since_commit', '')
+        since_commit = attrs.get('since_commit')
         repo = Repo(project_dir)
+        # if since_commit:
         changed_file_paths = set(
             os.path.join(project_dir, d.b_path)
             for d in repo.commit(since_commit).diff(None)
         )
+        # else:
+        #     changed_file_paths = []
+        #     for (_, _, filenames) in os.walk(project_dir):
+        #         changed_file_paths.extend(filenames)
+        #     changed_file_paths = set(filenames)
 
         file_paths = set()
         for dirpath, dnames, fnames in os.walk(project_dir):
@@ -66,6 +71,7 @@ class LintBuildTestCase(type):
                 isnt_excluded = not any(fnmatch.fnmatch(file_path, e) for e in excludes)
                 if is_python and is_changed and isnt_excluded:
                     file_paths.add(file_path)
+
         for file_path in file_paths:
             file_path_clean = file_path.replace('/', '_').replace('.', '_').strip('_')
             test = make_test(file_path, project_dir)
