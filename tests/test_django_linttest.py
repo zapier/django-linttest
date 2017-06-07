@@ -6,8 +6,6 @@ import re
 import time
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-from email_reply_parser import EmailReplyParser
-
 
 class DjangoLinttestTest(unittest.TestCase):
     def test_generates_lint_tests_for_project(self):

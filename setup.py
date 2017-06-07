@@ -19,7 +19,7 @@ setup(
     ],
     include_package_data=True,
     license='',
-    test_suite='test',
+    test_suite='tests',
     description='A django lint test runner',
     url='https://github.com/zapier/django-linttest',
     download_url='https://github.com/zapier/django-linttest/tarball/0.1',
