@@ -1,0 +1,41 @@
+language: python
+
+python:
+  - "2.7"
+  - "3.3"
+  - "3.4"
+  - "pypy"
+
+env:
+  - DJANGO_VERSION="1.7"
+  - DJANGO_VERSION="1.8"
+  - DJANGO_VERSION="1.9"
+  - DJANGO_VERSION="1.10"
+  - DJANGO_VERSION="1.11"
+
+install:
+  - pip install "Django>=${DJANGO_VERSION},<${DJANGO_VERSION}.99"
+  - python setup.py
+
+script: python manage.py test linttest
+
+matrix:
+  exclude:
+    - python: "3.3"
+      env: DJANGO_VERSION="1.3"
+    - python: "3.4"
+      env: DJANGO_VERSION="1.3"
+    - python: "3.3"
+      env: DJANGO_VERSION="1.4"
+    - python: "3.4"
+      env: DJANGO_VERSION="1.4"
+
+# deploy:
+#   provider: pypi
+#   user: zapier
+#   password:
+#     secure: fT6o+OLSLfeA9F0IJLWpN/viId9x7rO++5srN3bZRl5x/MiFDXnYEZRKtV8zZCpMfrXgkFAMJWaxh4etYyfe/BoIZN5iY41uiQakrfKpHHaTsThVvTed5LfJDO0OPojAnyQsXkdaPKefL4F+can3znNZNednQQc/i2F52y9eSUE=
+#   on:
+#     tags: true
+#     distributions: sdist bdist_wheel
+#     repo: zapier/django-linttest
