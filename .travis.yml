@@ -15,9 +15,8 @@ env:
 
 install:
   - pip install "Django>=${DJANGO_VERSION},<${DJANGO_VERSION}.99"
-  - python setup.py
 
-script: python manage.py test linttest
+script: python setup.py test
 
 # deploy:
 #   provider: pypi
