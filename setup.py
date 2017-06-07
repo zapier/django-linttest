@@ -25,5 +25,13 @@ setup(
     download_url='https://github.com/zapier/django-linttest/tarball/0.1',
     author='Harrison Jackson',
     author_email='harrison.jackson@zapier.com',
-    classifiers=[],
+    classifiers=[
+        'Topic :: Software Development',
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+    ]
 )
