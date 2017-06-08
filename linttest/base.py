@@ -53,6 +53,10 @@ class LintBuildTestCase(type):
         repo = Repo(project_dir)
         print 'IS DETACHED:'
         print repo.head.is_detached
+        if repo.head.is_detached:
+            'print T:'
+            print repo.head.commit.tree
+
         changed_file_paths = set(
             os.path.join(project_dir, d.b_path)
             for d in repo.commit(since_commit).diff(None)
