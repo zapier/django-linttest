@@ -12,13 +12,16 @@ class DjangoLinttestTest(unittest.TestCase):
         from linttest.base import LintBaseTestCase
 
         class ExampleProjectLintTest(LintBaseTestCase):
-            excludes = []
-            project_dir = './tests/example_project'
-            since_commit = '85b87f9c65fa53c346cd0760c2261ad85291d709'
+            excludes = ['./tests/example_project/polls/views.py']
+            lint_paths = ['./tests/example_project']
+            project_dir = './'
+            since_commit = '5573886a0aefa79ad29dc00706fcd20e3b1704a9'
 
         lint_tester = ExampleProjectLintTest
         self.assertIn(
             'test_lint_tests_example_project_polls_models_py',
             lint_tester.__dict__
         )
+        self.assertNotIn('test_lint_tests_example_project_polls_views_py', lint_tester.__dict__)
+
         self.assertTrue(True)

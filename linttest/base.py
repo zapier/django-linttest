@@ -49,6 +49,7 @@ class LintBuildTestCase(type):
         excludes = attrs.get('excludes', [])
         project_dir = attrs.get('project_dir', './')
         since_commit = attrs.get('since_commit')
+        lint_paths = attrs.get('lint_paths')
         repo = Repo(project_dir)
         # if since_commit:
         changed_file_paths = set(
@@ -69,7 +70,11 @@ class LintBuildTestCase(type):
                 is_python = file_path.endswith('.py')
                 is_changed = file_path in changed_file_paths
                 isnt_excluded = not any(fnmatch.fnmatch(file_path, e) for e in excludes)
-                if is_python and is_changed and isnt_excluded:
+                is_in_lint_paths = True
+                if lint_paths:
+                    is_in_lint_paths = any(file_path.startswith(path) for path in lint_paths)  # NOQA
+
+                if is_python and is_changed and isnt_excluded and is_in_lint_paths:
                     file_paths.add(file_path)
 
         for file_path in file_paths:
@@ -86,5 +91,6 @@ class LintBuildTestCase(type):
 class LintBaseTestCase(unittest.TestCase):
     __metaclass__ = LintBuildTestCase
     excludes = []
+    lint_paths = None  # Will lint all .py in project_dir since commit
     project_dir = './'
     since_commit = ''
