@@ -51,16 +51,10 @@ class LintBuildTestCase(type):
         since_commit = attrs.get('since_commit')
         lint_paths = attrs.get('lint_paths')
         repo = Repo(project_dir)
-        # if since_commit:
         changed_file_paths = set(
             os.path.join(project_dir, d.b_path)
             for d in repo.commit(since_commit).diff(None)
         )
-        # else:
-        #     changed_file_paths = []
-        #     for (_, _, filenames) in os.walk(project_dir):
-        #         changed_file_paths.extend(filenames)
-        #     changed_file_paths = set(filenames)
 
         file_paths = set()
         for dirpath, dnames, fnames in os.walk(project_dir):

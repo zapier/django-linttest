@@ -15,6 +15,7 @@ env:
 
 install:
   - pip install "Django>=${DJANGO_VERSION},<${DJANGO_VERSION}.99"
+  - git fetch origin
 
 script: python setup.py test
 
